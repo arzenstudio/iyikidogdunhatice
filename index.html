@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>İyi ki Doğdun Hatice 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:Poppins,sans-serif;
+    background:linear-gradient(180deg,#fff0f6,#ffe5ec);
+}
+
+.page{
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    top:0;
+    left:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    transition:1s;
+    padding:30px;
+}
+
+.active{
+    left:0;
+}
+
+h1{
+    font-family:"Great Vibes",cursive;
+    font-size:70px;
+    color:#ff4d88;
+}
+
+h2{
+    color:#ff5f95;
+    margin-bottom:20px;
+}
+
+p{
+    max-width:700px;
+    color:#555;
+    line-height:1.8;
+    font-size:20px;
+}
+
+button{
+    margin-top:30px;
+    padding:18px 45px;
+    border:none;
+    border-radius:50px;
+    background:white;
+    color:#ff4d88;
+    font-size:18px;
+    box-shadow:0 10px 30px rgba(255,90,140,.3);
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    max-width:700px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.letter{
+    background:rgba(255,255,255,.6);
+    padding:40px;
+    border-radius:30px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 20px 40px rgba(0,0,0,.1);
+}
+
+.final{
+    font-size:80px;
+    font-family:"Great Vibes";
+    color:#ff4d88;
+}
+
+.heart{
+    position:fixed;
+    color:#ff7aa8;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+
+.music{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:100;
+}
+
+@media(max-width:768px){
+
+h1{
+    font-size:50px;
+}
+
+.gallery{
+    grid-template-columns:1fr;
+}
+
+p{
+    font-size:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="muzik.mp3">
+</audio>
+
+<div class="music">
+    <button onclick="playMusic()">🎵 Müzik</button>
+</div>
+
+<div class="page active" id="page1">
+
+    <h1>Hatice 💗</h1>
+
+    <p>
+        Senin için küçük ama çok özel bir sürpriz hazırladım.
+    </p>
+
+    <button onclick="nextPage()">
+        Başlayalım ✨
+    </button>
+
+</div>
+
+<div class="page" id="page2">
+
+    <h1>İyi ki Doğdun</h1>
+
+    <p>
+        Bugün dünyanın en güzel insanlarından biri doğdu.
+    </p>
+
+    <button onclick="nextPage()">
+        Devam Et 💕
+    </button>
+
+</div>
+
+<div class="page" id="page3">
+
+    <h2>Birlikte Biriktirdiğimiz Anılar</h2>
+
+    <div class="gallery">
+
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+        <img src="foto4.jpg">
+
+    </div>
+
+    <button onclick="nextPage()">
+        Sonraki 💌
+    </button>
+
+</div>
+
+<div class="page" id="page4">
+
+    <div class="letter">
+
+        <h2>Sana Bir Mektup</h2>
+
+        <p>
+            Bazen bir insan hayatımıza gelir ve her şeyi güzelleştirir.
+            Senin gülüşün, mutluluğun ve varlığın çok kıymetli.
+
+            Yeni yaşında bütün hayallerinin gerçekleşmesini diliyorum.
+
+            İyi ki doğdun Hatice. 💗
+        </p>
+
+    </div>
+
+    <button onclick="nextPage()">
+        Son Sayfa ❤️
+    </button>
+
+</div>
+
+<div class="page" id="page5">
+
+    <div class="final">
+        İyi ki Varsın ❤️
+    </div>
+
+    <p style="margin-top:30px;">
+        Sonsuza kadar gülümse.
+    </p>
+
+</div>
+
+<script>
+
+let current = 1;
+
+function nextPage(){
+
+    document.getElementById(
+        "page"+current
+    ).classList.remove("active");
+
+    current++;
+
+    document.getElementById(
+        "page"+current
+    ).classList.add("active");
+}
+
+function playMusic(){
+    document.getElementById("music").play();
+}
+
+setInterval(() => {
+
+    let heart = document.createElement("div");
+
+    heart.innerHTML = "❤";
+
+    heart.className = "heart";
+
+    heart.style.left = Math.random()*100+"vw";
+
+    heart.style.fontSize =
+        Math.random()*20+20+"px";
+
+    heart.style.animationDuration =
+        Math.random()*3+3+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },6000);
+
+},300);
+
+</script>
+
+</body>
+</html>
